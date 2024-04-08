@@ -1,6 +1,6 @@
 @font-face {
 	font-family: 'Roboto Slab';
-	src: url(../../assets/fonts/Roboto%20Slab-7b31835ee5b2d61d6fc191b696e8591d.woff2) format('woff2');
+	src: url(../fonts/Roboto%20Slab-7b31835ee5b2d61d6fc191b696e8591d.woff2) format('woff2');
 	font-weight: 300;
 	font-style: normal;
 	font-display: auto;
@@ -9,7 +9,7 @@
 
 @font-face {
 	font-family: 'Roboto Slab';
-	src: url(../../assets/fonts/Roboto%20Slab-c53662d3e96b34898e06d783615af080.woff2) format('woff2');
+	src: url(../fonts/Roboto%20Slab-c53662d3e96b34898e06d783615af080.woff2) format('woff2');
 	font-weight: 300;
 	font-style: normal;
 	font-display: auto;
@@ -18,7 +18,7 @@
 
 @font-face {
 	font-family: 'Roboto Slab';
-	src: url(../../assets/fonts/Roboto%20Slab-64af07e587bed585ed54350132bce824.woff2) format('woff2');
+	src: url(../fonts/Roboto%20Slab-64af07e587bed585ed54350132bce824.woff2) format('woff2');
 	font-weight: 300;
 	font-style: normal;
 	font-display: auto;
@@ -27,7 +27,7 @@
 
 @font-face {
 	font-family: 'Roboto Slab';
-	src: url(../../assets/fonts/Roboto%20Slab-4a4ca3a855acc624bdd9a21fd9be3dd0.woff2) format('woff2');
+	src: url(../fonts/Roboto%20Slab-4a4ca3a855acc624bdd9a21fd9be3dd0.woff2) format('woff2');
 	font-weight: 300;
 	font-style: normal;
 	font-display: auto;
@@ -36,7 +36,7 @@
 
 @font-face {
 	font-family: 'Roboto Slab';
-	src: url(../../assets/fonts/Roboto%20Slab-e5a330ed8639273c890f5eff8ded5a8b.woff2) format('woff2');
+	src: url(../fonts/Roboto%20Slab-e5a330ed8639273c890f5eff8ded5a8b.woff2) format('woff2');
 	font-weight: 300;
 	font-style: normal;
 	font-display: auto;
@@ -45,7 +45,7 @@
 
 @font-face {
 	font-family: 'Roboto Slab';
-	src: url(../../assets/fonts/Roboto%20Slab-33c9712c8ba9459b1c13237ba3dc8788.woff2) format('woff2');
+	src: url(../fonts/Roboto%20Slab-33c9712c8ba9459b1c13237ba3dc8788.woff2) format('woff2');
 	font-weight: 300;
 	font-style: normal;
 	font-display: auto;
@@ -54,7 +54,7 @@
 
 @font-face {
 	font-family: 'Roboto Slab';
-	src: url(../../assets/fonts/Roboto%20Slab-552232fc8880eb1cb92d093ab269c11b.woff2) format('woff2');
+	src: url(../fonts/Roboto%20Slab-552232fc8880eb1cb92d093ab269c11b.woff2) format('woff2');
 	font-weight: 300;
 	font-style: normal;
 	font-display: auto;
@@ -63,7 +63,7 @@
 
 @font-face {
 	font-family: 'Roboto Slab';
-	src: url(../../assets/fonts/Roboto%20Slab-7b31835ee5b2d61d6fc191b696e8591d.woff2) format('woff2');
+	src: url(../fonts/Roboto%20Slab-7b31835ee5b2d61d6fc191b696e8591d.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: auto;
@@ -72,7 +72,7 @@
 
 @font-face {
 	font-family: 'Roboto Slab';
-	src: url(../../assets/fonts/Roboto%20Slab-c53662d3e96b34898e06d783615af080.woff2) format('woff2');
+	src: url(../fonts/Roboto%20Slab-c53662d3e96b34898e06d783615af080.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: auto;
@@ -81,7 +81,7 @@
 
 @font-face {
 	font-family: 'Roboto Slab';
-	src: url(../../assets/fonts/Roboto%20Slab-64af07e587bed585ed54350132bce824.woff2) format('woff2');
+	src: url(../fonts/Roboto%20Slab-64af07e587bed585ed54350132bce824.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: auto;
@@ -90,7 +90,7 @@
 
 @font-face {
 	font-family: 'Roboto Slab';
-	src: url(../../assets/fonts/Roboto%20Slab-4a4ca3a855acc624bdd9a21fd9be3dd0.woff2) format('woff2');
+	src: url(../fonts/Roboto%20Slab-4a4ca3a855acc624bdd9a21fd9be3dd0.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: auto;
@@ -99,7 +99,7 @@
 
 @font-face {
 	font-family: 'Roboto Slab';
-	src: url(../../assets/fonts/Roboto%20Slab-e5a330ed8639273c890f5eff8ded5a8b.woff2) format('woff2');
+	src: url(../fonts/Roboto%20Slab-e5a330ed8639273c890f5eff8ded5a8b.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: auto;
@@ -108,7 +108,7 @@
 
 @font-face {
 	font-family: 'Roboto Slab';
-	src: url(../../assets/fonts/Roboto%20Slab-33c9712c8ba9459b1c13237ba3dc8788.woff2) format('woff2');
+	src: url(../fonts/Roboto%20Slab-33c9712c8ba9459b1c13237ba3dc8788.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: auto;
@@ -117,7 +117,7 @@
 
 @font-face {
 	font-family: 'Roboto Slab';
-	src: url(../../assets/fonts/Roboto%20Slab-552232fc8880eb1cb92d093ab269c11b.woff2) format('woff2');
+	src: url(../fonts/Roboto%20Slab-552232fc8880eb1cb92d093ab269c11b.woff2) format('woff2');
 	font-weight: 400;
 	font-style: normal;
 	font-display: auto;
