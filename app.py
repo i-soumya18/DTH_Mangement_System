@@ -17,9 +17,14 @@ def login():
 @app.route('/signup.html')
 def signup():
     return render_template('signup.html')
+
 @app.route('/service.html')
 def service():
     return render_template('service.html')
+
+@app.route('/cart.html')
+def cart():
+    return render_template('cart.html')
 
 if __name__ == '__main__':
     app.run(debug=True)
