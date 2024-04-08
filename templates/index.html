@@ -4,39 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DTH Management System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #751dcf;
-            background-image: url('https://img.freepik.com/free-photo/spacecraft-orbiting-planet-earth-global-communications-generated-by-ai_188544-22043.jpg?w=996');
-
-
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-        }
         .container {
-            max-width: 600px;
-            margin: 100px auto;
-            padding: 20px;
-            background-color: rgba(255, 255, 255,0.7);
+            max-width: 800px;
+            background-color: rgba(255, 255, 255, 0.7);
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            margin-top: 50px;
+            padding: 20px;
+        }
+        .sidebar {
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
         h1 {
             text-align: center;
             color: #333;
+            margin-bottom: 20px;
         }
         p {
             text-align: center;
             color: #666;
+            margin-bottom: 20px;
         }
         button {
             display: block;
-            margin: 20px auto;
-            padding: 10px 20px;
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 10px;
             background-color: #007bff;
             color: #fff;
             border: none;
@@ -50,7 +48,6 @@
         ul {
             list-style-type: none;
             padding: 0;
-            text-align: center;
         }
         li {
             margin-bottom: 10px;
@@ -66,16 +63,54 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Welcome to DTH Management System</h1>
-        <p>Please select your role:</p>
-        <button onclick="chooseRole('admin')">Admin</button>
-        <button onclick="chooseRole('customer')">Customer</button>
-
-        <ul id="roleOptions" style="display: none;">
-        </ul>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img class="d-block w-100" src="https://images.freeimages.com/variants/DVg6TTGcRiJSdhEbY212DbAu/f4a36f6589a0e50e702740b15352bc00e4bfaf6f58bd4db850e167794d05993d?fmt=webp&h=350" alt="First slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="https://via.placeholder.com/800x400?text=Slide+2" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+                <img class="d-block w-100" src="https://via.placeholder.com/800x400?text=Slide+3" alt="Third slide">
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
 
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <h1>Welcome to DTH Management System</h1>
+                <p>Please select your role:</p>
+                <button onclick="chooseRole('admin')">Admin</button>
+                <button onclick="chooseRole('customer')">Customer</button>
+            </div>
+            <div class="col-lg-4">
+                <div class="sidebar">
+                    <h2>Sign In / Sign Up</h2>
+                    <ul id="roleOptions" style="display: none;">
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
         function chooseRole(role) {
             var roleOptions = document.getElementById("roleOptions");
