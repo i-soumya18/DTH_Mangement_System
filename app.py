@@ -75,6 +75,11 @@ def signup_data():
         # If the file doesn't exist, create an empty list
         credentials = []
 
+    # Check if there's already user data
+    if credentials:
+        # If there's existing user data, remove it
+        credentials = []
+
     # Add new user data to credentials
     credentials.append(user_data)
 
@@ -108,5 +113,6 @@ def login_user():
         # Redirect back to the login page with an error message
         return redirect(url_for('login'))
 
-if __name__ == '__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(host='0.0.0.0', port=8080)  # Change the port to the one you want to use
+

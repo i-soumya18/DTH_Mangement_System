@@ -73,7 +73,7 @@
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                     <div class="form-group">
                         <label for="fullName">Full Name</label>
-                        <input type="text" class="form-control" id="fullName" placeholder="Enter full name">
+                        <input type="text" class="form-control" id="fullName" placeholder="Enter your Name">
                     </div>
                 </div>
                 <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
@@ -137,23 +137,7 @@
     </div>
     </div>
     </div>
-     <script>
-    // Fetch user data from JSON file
-    fetch('credentials.json')
-        .then(response => response.json())
-        .then(data => {
-            // Populate form fields with user data
-            document.getElementById('fullName').value = data[0].name;
-            document.getElementById('eMail').value = data[0].email;
-            document.getElementById('phone').value = data[0].phone_number;
-            document.getElementById('website').value = ''; // Add website data if available in JSON
-            document.getElementById('Street').value = data[0].street;
-            document.getElementById('ciTy').value = data[0].city;
-            document.getElementById('sTate').value = data[0].state;
-            document.getElementById('zIp').value = data[0].zip_code;
-        })
-        .catch(error => console.error('Error fetching user data:', error));
-</script>
+
     <footer>
         <div class="row">
             <div class="col-sm-6 col-md-4 footer-navigation">
@@ -183,6 +167,8 @@
     <script src="../static/js/Profile-Edit-Form-profile.js"></script>
     <script src="../static/js/Simple-Slider-swiper-bundle.min.js"></script>
     <script src="../static/js/Simple-Slider.js"></script>
+    <script src="../static/script.js"></script>
+
 </body>
 
 </html>
