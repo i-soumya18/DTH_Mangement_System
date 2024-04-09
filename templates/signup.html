@@ -28,66 +28,68 @@
             <div><a class="navbar-brand" href="#"><span>Creativarian </span> </a></div>
             <div class="collapse navbar-collapse" id="navcol-1" style="color: rgb(255,255,255);">
                 <ul class="navbar-nav nav-right">
-                    <li class="nav-item"><a class="nav-link active" href="index.html" style="color: rgba(224,217,217,0.9);">home </a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/home" style="color: rgba(224,217,217,0.9);">home </a></li>
                     <li class="nav-item dropdown"><a class="dropdown-toggle nav-link" aria-expanded="false" data-bs-toggle="dropdown" href="#" style="color: rgba(224,217,217,0.9);">Services </a>
-                        <div class="dropdown-menu"><a class="dropdown-item" href="service.html">Channels</a><a class="dropdown-item" href="cart.html">Cart</a></div>
+                        <div class="dropdown-menu"><a class="dropdown-item" href="/service">Channels</a><a class="dropdown-item" href="/cart">Cart</a></div>
                     </li>
-                    <li class="nav-item"><a class="nav-link" href="about.html" style="color: rgba(224,217,217,0.9);">about </a></li>
-                    <li class="nav-item"><a class="nav-link" href="contact.html" style="color: rgba(224,217,217,0.9);">contact </a></li>
+                    <li class="nav-item"><a class="nav-link" href="/about" style="color: rgba(224,217,217,0.9);">about </a></li>
+                    <li class="nav-item"><a class="nav-link" href="/contact" style="color: rgba(224,217,217,0.9);">contact </a></li>
+                    <li class="nav-item"><a class="nav-link" href="/profile" style="color: rgba(224,217,217,0.9);">profile </a></li>
                 </ul>
-                <p class="ms-auto navbar-text actions"><a class="login" href="login.html" style="color: rgba(224,217,217,0.9);">Log In</a> <a class="btn btn-light action-button" role="button" href="signup.html" style="color: rgba(0,0,0,0.9);background: var(--bs-gray-200);border-radius: 10px;border-style: solid;border-color: rgba(0,0,0,0.9);font-size: 16px;padding: 5px 8px;">Sign Up</a></p>
+                <p class="ms-auto navbar-text actions"><a class="login" href="/login" style="color: rgba(224,217,217,0.9);">Log In</a> <a class="btn btn-light action-button" role="button" href="/signup" style="color: rgba(0,0,0,0.9);background: var(--bs-gray-200);border-radius: 10px;border-style: solid;border-color: rgba(0,0,0,0.9);font-size: 16px;padding: 5px 8px;">Sign Up</a></p>
             </div>
         </div>
     </nav>
-    <div class="row justify-content-center">
-        <div class="col-xl-10">
-            <div class="card border-0">
-                <div class="card-body p-0">
-                    <div class="row no-gutters">
-                        <div class="col-lg-6">
-                            <div class="p-5">
-                                <div class="mb-5">
-                                    <h3 class="h4 font-weight-bold text-theme">Register</h3>
-                                </div>
-                                <h6 class="h5 mb-0">Just Do Register.</h6>
-                                <p class="text-muted mt-2 mb-5">If You Really Want To Know, Look In The Register.</p>
-                                <form>
-                                    <div class="form-group">
-                                        <label for="yourName">Your name</label>
-                                        <input type="text" class="form-control" id="yourName" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Email address</label>
-                                        <input type="email" class="form-control" id="exampleInputEmail1" />
-                                    </div>
-                                    <div class="form-group mb-5">
-                                        <label for="exampleInputPassword1">Password</label>
-                                        <input type="password" class="form-control" id="exampleInputPassword1" />
-                                    </div>
-                                    <button type="submit" class="btn btn-theme">Register</button>
-                                </form>
+   <div class="row justify-content-center">
+    <div class="col-xl-10">
+        <div class="card border-0">
+            <div class="card-body p-0">
+                <div class="row no-gutters">
+                    <div class="col-lg-6">
+                        <div class="p-5">
+                            <div class="mb-5">
+                                <h3 class="h4 font-weight-bold text-theme">Register</h3>
                             </div>
-                        </div>
-                        <div class="col-lg-6 d-none d-lg-inline-block">
-                            <div class="account-block rounded-right">
-                                <div class="overlay rounded-right"></div>
-                                <div class="account-testimonial">
-                                    <h4 class="text-white mb-4">This beautiful theme yours!</h4>
-                                    <p class="lead text-white">"Best investment i made for a long time. Can only recommend it for other users."</p>
-                                    <p>- Admin User</p>
+                            <h6 class="h5 mb-0">Just Do Register.</h6>
+                            <p class="text-muted mt-2 mb-5">If You Really Want To Know, Look In The Register.</p>
+                            <form method="POST" action="/signup">
+                                <div class="form-group">
+                                    <label for="yourName">Your name</label>
+                                    <input type="text" class="form-control" id="yourName" name="yourName" />
                                 </div>
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1">Email address</label>
+                                    <input type="email" class="form-control" id="exampleInputEmail1" name="exampleInputEmail1" />
+                                </div>
+                                <div class="form-group mb-5">
+                                    <label for="exampleInputPassword1">Password</label>
+                                    <input type="password" class="form-control" id="exampleInputPassword1" name="exampleInputPassword1" />
+                                </div>
+                                <button type="submit" class="btn btn-theme">Register</button>
+                            </form>
+                        </div>
+                    </div>
+                    <div class="col-lg-6 d-none d-lg-inline-block">
+                        <div class="account-block rounded-right">
+                            <div class="overlay rounded-right"></div>
+                            <div class="account-testimonial">
+                                <h4 class="text-white mb-4">This beautiful theme yours!</h4>
+                                <p class="lead text-white">"Best investment I made for a long time. Can only recommend it for other users."</p>
+                                <p>- Admin User</p>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- end card-body -->
             </div>
-            <!-- end card -->
-            <p class="text-muted text-center mt-3 mb-0">Already have an account? <a href="login.html" class="text-primary ml-1">login</a></p>
-            <!-- end row -->
+            <!-- end card-body -->
         </div>
-        <!-- end col -->
+        <!-- end card -->
+        <p class="text-muted text-center mt-3 mb-0">Already have an account? <a href="login.html" class="text-primary ml-1">Login</a></p>
+        <!-- end row -->
     </div>
+    <!-- end col -->
+</div>
+
     <!-- Row -->
 </div>
     <footer>
