@@ -48,12 +48,22 @@ def signup_data():
     name = request.form.get('yourName')
     email = request.form.get('exampleInputEmail1')
     password = request.form.get('exampleInputPassword1')
+    phone_number = request.form.get('exampleInputPhoneNumber')
+    street = request.form.get('exampleInputStreet')
+    state = request.form.get('exampleInputState')
+    city = request.form.get('exampleInputCity')
+    zip_code = request.form.get('exampleInputZipCode')
 
     # Create dictionary for user credentials
     user_data = {
         'name': name,
         'email': email,
-        'password': password
+        'password': password,
+        'phone_number': phone_number,
+        'street': street,
+        'state': state,
+        'city': city,
+        'zip_code': zip_code
     }
 
     # Check if the credentials file exists
@@ -73,6 +83,16 @@ def signup_data():
         json.dump(credentials, file, indent=4)
 
     return redirect(url_for('home'))
+
+# Route to render profile page
+@app.route('/profile')
+def profile_data():
+    # Load user data from JSON file
+    with open('credentials.json', 'r') as file:
+        user_data = json.load(file)
+
+    # Pass user data to profile.html template
+    return render_template('profile.html', user=user_data)
 
 @app.route('/login', methods=['POST'])
 def login_user():
