@@ -60,3 +60,14 @@ def check_email_exists(email):
     cursor.close()
     connection.close()
     return user is not None
+
+# Function to delete user from the database based on email
+def delete_user(email):
+    connection = connect_to_database()
+    cursor = connection.cursor()
+    query = "DELETE FROM users WHERE email = %s"
+    cursor.execute(query, (email,))
+    connection.commit()
+    cursor.close()
+    connection.close()
+
