@@ -1,5 +1,7 @@
-from flask import Flask, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from database_setup import check_credentials, signup_data, get_profile_data
+
+
 
 app = Flask(__name__)
 app.secret_key = 'abcdefghijklmnopqrswxyz'
@@ -24,10 +26,25 @@ def service():
 def cart():
     return render_template('cart.html')
 
+#@app.route('/profile')
+#def profile1():
+#    return render_template('profile.html')
+
 @app.route('/profile')
 def profile():
-    user_data = get_profile_data()
-    return render_template('profile.html', user=user_data)
+    # Retrieve user's email from session
+    email = session.get('email')
+
+    if email:
+        # Fetch user's data from database using email
+        user_data = get_profile_data(email)
+        if user_data:
+            # Pass user's data to render_template function
+            return render_template('profile.html', user=user_data)
+        else:
+            return 'User data not found'
+    else:
+        return redirect(url_for('login'))
 
 @app.route('/signup')
 def signup():
@@ -43,14 +60,25 @@ def signup_post():
         return redirect(url_for('signup'))
 
 @app.route('/login', methods=['POST'])
-def login_post():
+def login_user():
     email = request.form.get('email')
     password = request.form.get('password')
+
     if check_credentials(email, password):
-        return redirect(url_for('home'))
+        # Store user's email in session upon successful login
+        session['email'] = email
+        return redirect(url_for('profile'))
     else:
+        # Redirect back to login page with error message
         return redirect(url_for('login'))
+# Route for logout
+@app.route('/logout')
+def logout():
+    # Clear the user's session
+    session.pop('email', None)
+    flash('You have been logged out successfully!', 'success')
+    return redirect(url_for('home'))
 
 if __name__ == "__main__":
-    app.secret_key = 'your_secret_key'  # Add a secret key for session management
+    app.secret_key = 'abcdefghijklmnopqrswxyz'  # Add a secret key for session management
     app.run(host='0.0.0.0', port=8080)

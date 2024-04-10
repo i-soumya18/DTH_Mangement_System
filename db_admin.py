@@ -7,11 +7,11 @@ def show_user_details():
     if user:
         # Display user details
         name_label.config(text="Name: " + user[1])
-        phone_label.config(text="Phone Number: " + user[3])
-        street_label.config(text="Street: " + user[4])
-        state_label.config(text="State: " + user[5])
-        city_label.config(text="City: " + user[6])
-        zip_code_label.config(text="Zip Code: " + user[7])
+        phone_label.config(text="Phone Number: " + user[4])
+        street_label.config(text="Street: " + user[5])
+        state_label.config(text="State: " + user[6])
+        city_label.config(text="City: " + user[7])
+        zip_code_label.config(text="Zip Code: " + user[8])
     else:
         messagebox.showinfo("Error", "User not found")
 
