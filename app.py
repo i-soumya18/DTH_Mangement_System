@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
-from database_setup import check_credentials, signup_data, get_profile_data
+from database_setup import check_credentials, signup_data, get_profile_data, update_user_data
 
 
 
@@ -78,6 +78,18 @@ def logout():
     session.pop('email', None)
     flash('You have been logged out successfully!', 'success')
     return redirect(url_for('home'))
+
+
+@app.route('/update_profile', methods=['POST'])
+def update_profile():
+    form_data = request.form
+    # Call the update_user_data function from database_setup.py
+    update_result = update_user_data(form_data)
+    if update_result:
+        flash('Profile updated successfully!', 'success')
+    else:
+        flash('Failed to update profile!', 'error')
+    return redirect(url_for('profile'))
 
 if __name__ == "__main__":
     app.secret_key = 'abcdefghijklmnopqrswxyz'  # Add a secret key for session management

@@ -71,3 +71,35 @@ def delete_user(email):
     cursor.close()
     connection.close()
 
+#Function to update user data in the database through profile page
+def update_user_data(form_data):
+    name = form_data.get('yourName')
+    email = form_data.get('exampleInputEmail1')
+    #password = form_data.get('exampleInputPassword1')
+    phone_number = form_data.get('exampleInputPhoneNumber')
+    street = form_data.get('exampleInputStreet')
+    state = form_data.get('exampleInputState')
+    city = form_data.get('exampleInputCity')
+    zip_code = form_data.get('exampleInputZipCode')
+
+    connection = connect_to_database()
+    cursor = connection.cursor()
+    query = "UPDATE users SET name = %s, phone_number = %s, street = %s, state = %s, city = %s, zip_code = %s WHERE email = %s"
+    cursor.execute(query, (name, phone_number, street, state, city, zip_code, email))
+    connection.commit()
+    cursor.close()
+    connection.close()
+    return True
+
+#Function to retrieve all the users from the database
+def get_all_users():
+    connection = connect_to_database()
+    cursor = connection.cursor()
+    query = "SELECT * FROM users"
+    cursor.execute(query)
+    users = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    return users
+
+
