@@ -1,0 +1,17 @@
+[
+    {
+        "channel_id": "NarendraModi",
+        "channel_title": "Channel Title 1",
+        "channel_link": "https://www.youtube.com/@NarendraModi"
+    },
+    {
+        "channel_id": "NitishRajput",
+        "channel_title": "Channel Title 2",
+        "channel_link": "https://www.youtube.com/@NitishRajput"
+    },
+    {
+        "channel_id": "GauravThakur-GSF",
+        "channel_title": "Gaurav Thakur",
+        "channel_link": "https://www.youtube.com/@GauravThakur-GSF"
+    }
+]
