@@ -20,7 +20,7 @@ def login():
 @app.route('/service')
 def service():
     # Example channel ID (replace this with the actual channel ID you want to fetch)
-    channel_id = "@NarendraModi"
+    channel_id = "7lCDEYXw3mM"
 
     # Call the function to fetch channel data using the provided channel ID
     channel_data = get_channel_data(channel_id)
