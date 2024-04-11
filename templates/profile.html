@@ -132,6 +132,31 @@
             </div>
         </div>
     </div>
+     <h2>Purchased Channels</h2>
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Channel ID</th>
+                    <th scope="col">Channel Title</th>
+                    <th scope="col">Channel Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for channel in purchased_channels %}
+                <tr>
+                    <td>{{ channel[1] }}</td>
+                    <td>{{ channel[2] }}</td>
+                    <td>${{ channel[3] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <a href="/">Home</a>
+    <a href="/logout">Logout</a>
+</body>
 
     <footer>
         <div class="row">

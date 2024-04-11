@@ -42,24 +42,37 @@
             </div>
         </div>
     </nav>
-    <form class="search-form">
-        <div class="input-group"><span class="input-group-text"><i class="fa fa-search"></i></span><input class="form-control" type="text" placeholder="I am looking for.."><button class="btn btn-light" type="button">Search </button></div>
+    <form class="search-form" method="GET" action="https://www.googleapis.com/youtube/v3/channels?part=snippet&id=CodeWithHarry&key=AIzaSyAyKGLUMzqBQJEkkFofZyQRGc6_2w8T-Uc">
+    <div class="input-group">
+        <span class="input-group-text"><i class="fa fa-search"></i></span>
+        <input class="form-control" type="text" placeholder="Search for a YouTube channel..." name="query">
+        <button class="btn btn-light" type="submit">Search</button>
+    </div>
     </form>
-    <section class="py-4 py-xl-5">
-        <div class="container">
-            <div class="bg-dark border rounded border-0 border-dark overflow-hidden">
-                <div class="row g-0">
-                    <div class="col-md-6">
-                        <div class="text-white p-4 p-md-5">
-                            <h2 class="fw-bold text-white mb-3">ScienceFact</h2>
-                            <p class="mb-4">Tincidunt laoreet leo, adipiscing taciti tempor. Primis senectus sapien, risus donec ad fusce augue interdum.</p>
-                            <div class="my-3"><a class="btn btn-light btn-lg" role="button" href="cart">Add</a></div>
-                        </div>
+<section class="py-4 py-xl-5">
+    <div class="container">
+        {% for channel in channel_data %}
+        <div class="bg-dark border rounded border-0 border-dark overflow-hidden mb-4">
+            <div class="row g-0">
+                <div class="col-md-6">
+                    <div class="text-white p-4 p-md-5">
+                        <h2 class="fw-bold text-white mb-3">{{ channel.title }}</h2>
+                        <p class="mb-4">{{ channel.glance }}</p>
+                        <p class="mb-4">Price: ${{ channel.price }}</p>
+                        <form action="/add_channel" method="POST">
+                            <input type="hidden" name="channel_id" value="{{ channel.channel_id }}">
+                            <button class="btn btn-light btn-lg" type="submit">Add to Cart</button>
+                        </form>
                     </div>
-                    <div class="col-md-6 order-first order-md-last" style="min-height: 250px;"><img class="w-100 h-100 fit-cover" src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png"></div>
+                </div>
+                <div class="col-md-6 order-first order-md-last" style="min-height: 250px;">
+                    <img class="w-100 h-100 fit-cover" src="{{ channel.image_url }}">
                 </div>
             </div>
         </div>
+        {% endfor %}
+    </div>
+</section>
         <div><a class="btn btn-outline-primary" role="button" href="#">← Back</a><a class="btn btn-outline-primary float-end" role="button" href="#">Next →</a></div>
         <footer>
             <div class="row">

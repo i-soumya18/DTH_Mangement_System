@@ -9,6 +9,18 @@ def connect_to_database():
         database="dth_data"
     )
 
+
+# design the dth_data.cart table
+def create_cart_table():
+    connection = connect_to_database()
+    cursor = connection.cursor()
+    query = "CREATE TABLE IF NOT EXISTS cart (email VARCHAR(255), channel_id VARCHAR(255), channel_title VARCHAR(255))"
+    cursor.execute(query)
+    connection.commit()
+    cursor.close()
+    connection.close()
+
+
 # Function to check if the provided email and password match any stored credentials in the database
 def check_credentials(email, password):
     connection = connect_to_database()
@@ -101,5 +113,70 @@ def get_all_users():
     cursor.close()
     connection.close()
     return users
+
+# Function to add channel to the cart
+def add_channel(email, channel_data):
+    connection = connect_to_database()
+    cursor = connection.cursor()
+    query = "INSERT INTO cart (email, channel_id, channel_title) VALUES (%s, %s, %s)"
+    cursor.execute(query, (email, channel_data['id'], channel_data['title']))
+    connection.commit()
+    cursor.close()
+    connection.close()
+
+
+# Function to get cart data for the user
+def get_cart_data(email):
+    connection = connect_to_database()
+    cursor = connection.cursor()
+    query = "SELECT * FROM cart WHERE email = %s"
+    cursor.execute(query, (email,))
+    cart_data = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    return cart_data
+
+# Function to delete channel from the cart
+def delete_channel(email, channel_id):
+    connection = connect_to_database()
+    cursor = connection.cursor()
+    query = "DELETE FROM cart WHERE email = %s AND channel_id = %s"
+    cursor.execute(query, (email, channel_id))
+    connection.commit()
+    cursor.close()
+    connection.close()
+
+# Function to store purchased channels in the database
+def store_purchased_channels(email, channels):
+    connection = connect_to_database()
+    cursor = connection.cursor()
+    query = "INSERT INTO purchased_channels (email, channel_id, channel_title, channel_price) VALUES (%s, %s, %s, %s)"
+    for channel in channels:
+        cursor.execute(query, (email, channel['channel_id'], channel['channel_title'], channel['channel_price']))
+    connection.commit()
+    cursor.close()
+    connection.close()
+
+def clear_cart(email):
+    connection = connect_to_database()
+    cursor = connection.cursor()
+    query = "DELETE FROM cart WHERE email = %s"
+    cursor.execute(query, (email,))
+    connection.commit()
+    cursor.close()
+    connection.close()
+
+# Function to retrieve purchased channels for a user
+def get_purchased_channels(email):
+    connection = connect_to_database()
+    cursor = connection.cursor()
+    query = "SELECT * FROM cart WHERE email = %s"
+    cursor.execute(query, (email,))
+    purchased_channels = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    return purchased_channels
+
+
 
 
