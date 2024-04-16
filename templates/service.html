@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>dth</title>
+    <title>SkyView</title>
     <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="../static/css/Cookie.css">
     <link rel="stylesheet" href="../static/css/Roboto.css">
@@ -42,35 +42,45 @@
             </div>
         </div>
     </nav>
-    <form class="search-form" method="GET" action="https://www.googleapis.com/youtube/v3/channels?part=snippet&id=CodeWithHarry&key=AIzaSyAyKGLUMzqBQJEkkFofZyQRGc6_2w8T-Uc">
-    <div class="input-group">
-        <span class="input-group-text"><i class="fa fa-search"></i></span>
-        <input class="form-control" type="text" placeholder="Search for a YouTube channel..." name="query">
-        <button class="btn btn-light" type="submit">Search</button>
-    </div>
+    <form action="/search_channel" method="post">
+        <input type="text" name="channel_name" placeholder="Enter channel name">
+        <button type="submit">Search</button>
     </form>
 <section class="py-4 py-xl-5">
     <div class="container">
-        {% for channel in channel_data %}
-        <div class="bg-dark border rounded border-0 border-dark overflow-hidden mb-4">
-            <div class="row g-0">
-                <div class="col-md-6">
-                    <div class="text-white p-4 p-md-5">
-                        <h2 class="fw-bold text-white mb-3">{{ channel.title }}</h2>
-                        <p class="mb-4">{{ channel.glance }}</p>
-                        <p class="mb-4">Price: ${{ channel.price }}</p>
-                        <form action="/add_channel" method="POST">
-                            <input type="hidden" name="channel_id" value="{{ channel.channel_id }}">
-                            <button class="btn btn-light btn-lg" type="submit">Add to Cart</button>
-                        </form>
+        {% if channels %}
+        <div class="row">
+            {% for channel in channels %}
+            <div class="col-md-4 mb-4">
+                <div class="bg-dark border rounded border-0 border-dark overflow-hidden">
+                    <div class="row g-0">
+                        <div class="col-md-12">
+                            <div class="text-white p-4 p-md-5">
+                                <h2 class="fw-bold text-white mb-3">{{ channel['channel_name'] }}</h2>
+                                <p class="mb-4">Channel ID: {{ channel['channel_id'] }}</p>
+                                <p class="mb-4">Price: ${{ channel['channel_price'] }}</p>
+                                <a href="{{ channel['channel_url'] }}" class="btn btn-light btn-lg" target="_blank">View Channel</a>
+                                <form action="/add_channel" method="POST">
+                                    <input type="hidden" name="channel_id" value="{{ channel['channel_id'] }}">
+                                    <button class="btn btn-light btn-lg" type="submit">Add to Cart</button>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-md-12" style="min-height: 250px;">
+                            <!-- Add an iframe to display the channel thumbnail -->
+                            <iframe width="100%" height="100%" src="{{ channel['channel_url'] }}" frameborder="0" allowfullscreen></iframe>
+                        </div>
                     </div>
                 </div>
-                <div class="col-md-6 order-first order-md-last" style="min-height: 250px;">
-                    <img class="w-100 h-100 fit-cover" src="https://telecomtalk.info/wp-content/uploads/2019/12/dishtv-hd-box-warranty-offer.jpg.webp">
-                </div>
             </div>
+            {% endfor %}
         </div>
-        {% endfor %}
+        {% else %}
+        <div class="text-center">
+            <h2>No channels found</h2>
+            <p>{{ message }}</p>
+        </div>
+        {% endif %}
     </div>
 </section>
         <div><a class="btn btn-outline-primary" role="button" href="#">← Back</a><a class="btn btn-outline-primary float-end" role="button" href="#">Next →</a></div>

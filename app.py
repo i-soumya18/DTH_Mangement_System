@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from database_setup import check_credentials, signup_data, get_profile_data, update_user_data, add_channel, get_cart_data, delete_channel, clear_cart, store_purchased_channels, get_purchased_channels
 from service import get_channel_data
+from database_setup import add_channel_to_db, connect_to_database, get_all_channels
 
 app = Flask(__name__)
 app.secret_key = 'abcdefghijklmnopqrswxyz'
@@ -19,18 +20,21 @@ def login():
 
 @app.route('/service')
 def service():
-    # Example channel ID (replace this with the actual channel ID you want to fetch)
-    channel_id = "7lCDEYXw3mM"
+    # Connect to the database
+    connection = connect_to_database()
+    cursor = connection.cursor()
 
-    # Call the function to fetch channel data using the provided channel ID
-    channel_data = get_channel_data(channel_id)
-
-    if channel_data:
-        # If channel data is successfully fetched, pass it to the service.html template
-        return render_template('service.html', channel_data=channel_data)
+    # Check if there are any channels in the database
+    channels = get_all_channels(cursor)
+    if channels:
+        # If channels exist, fetch all channel data
+        return render_template('service.html', channels=channels)
     else:
-        # If channel data retrieval fails, return an error message or handle it accordingly
-        return "Failed to fetch YouTube channel data. Please try again later."
+        # If no channels exist, display a message
+        return render_template('service.html', message="Start browsing channels")
+
+    cursor.close()
+    connection.close()
 
 
 
@@ -91,6 +95,23 @@ def update_profile():
     else:
         flash('Failed to update profile!', 'error')
     return redirect(url_for('profile'))
+
+@app.route('/search_channel', methods=['POST'])
+def search_channel():
+    if request.method == 'POST':
+        channel_name = request.form.get('channel_name')
+        if channel_name:
+            channel_data = get_channel_data(channel_name)
+            if channel_data:
+                # Add the fetched channel data to the database
+                add_channel_to_db(channel_data)
+                flash('Channel data fetched and stored successfully!', 'success')
+            else:
+                flash('Failed to fetch channel data. Please try again later.', 'error')
+        else:
+            flash('Please provide a channel name.', 'error')
+        return redirect(url_for('service'))
+
 
 @app.route('/add_channel', methods=['POST'])
 def add_channel_to_cart():

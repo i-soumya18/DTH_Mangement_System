@@ -177,6 +177,46 @@ def get_purchased_channels(email):
     connection.close()
     return purchased_channels
 
+# Function to add channel to the database
+def add_channel_to_db(channel_data):
+    try:
+        connection = connect_to_database()
+        cursor = connection.cursor()
 
+        # Check if the channel already exists in the database
+        query = "SELECT * FROM channels WHERE channel_id = %s"
+        cursor.execute(query, (channel_data['channel_id'],))
+        existing_channel = cursor.fetchone()
+
+        if existing_channel:
+            # Channel already exists, you can choose to update it or skip
+            pass
+        else:
+            # Insert the channel into the database
+            query = "INSERT INTO channels (channel_id, channel_name, channel_price, channel_url) VALUES (%s, %s, %s, %s)"
+            cursor.execute(query, (channel_data['channel_id'], channel_data['channel_name'], channel_data['channel_price'], channel_data['channel_url']))
+            connection.commit()
+
+        cursor.close()
+        connection.close()
+    except mysql.connector.Error as error:
+        print("Error adding channel to database:", error)
+
+
+# Call this function to create your channels table if it does not exist
+def create_channels_table():
+    connection = connect_to_database()
+    cursor = connection.cursor()
+    query = "CREATE TABLE IF NOT EXISTS channels (channel_id VARCHAR(255) PRIMARY KEY, channel_name VARCHAR(255), channel_price FLOAT)"
+    cursor.execute(query)
+    connection.commit()
+    cursor.close()
+    connection.close()
+
+def get_all_channels(cursor):
+    query = "SELECT * FROM channels"
+    cursor.execute(query)
+    channels = cursor.fetchall()
+    return channels
 
 
