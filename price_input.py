@@ -1,14 +1,8 @@
 import tkinter as tk
 from tkinter import messagebox
 import mysql.connector
+from database_setup import connect_to_database
 
-def connect_to_database():
-    return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="soumya",  # Change this to your MySQL password
-        database="dth_data"   # Change this to your database name
-    )
 
 def update_price(channel_id, price):
     try:

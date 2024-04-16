@@ -173,6 +173,40 @@ def cart():
         # If user is not logged in, redirect to the login page
         return redirect(url_for('login'))
 
+from flask import session
+
+@app.route('/add_to_cart', methods=['POST'])
+def add_to_cart():
+    # Check if the user is logged in
+    email = session.get('email')
+    if not email:
+        flash('User not logged in!', 'error')
+        return redirect(url_for('login'))  # Redirect to login page if user is not logged in
+
+    if request.method == 'POST':
+        # Extract form data
+        channel_id = request.form['channel_id']
+        channel_title = request.form['channel_name']
+        channel_price = request.form['channel_price']
+        email = session.get('email')
+        #channel_url = request.form['channel_url']
+
+        # Add channel to cart table
+        try:
+            connection = connect_to_database()
+            cursor = connection.cursor()
+            query = "INSERT INTO cart (email, channel_id, channel_title, channel_price) VALUES (%s, %s, %s, %s)"
+            cursor.execute(query, (email, channel_id, channel_title, channel_price))
+            connection.commit()
+            cursor.close()
+            connection.close()
+            flash('Channel added to cart successfully!', 'success')
+            return redirect(url_for('show_channels'))  # Redirect to the page where channels are displayed
+        except Exception as e:
+            print("Error adding channel to cart:", e)
+            flash('An error occurred while adding the channel to the cart.', 'error')
+            return redirect(url_for('service'))  # Redirect to the page where channels are displayed
+
 if __name__ == "__main__":
     app.secret_key = 'abcdefghijklmnopqrswxyz'
     app.run(host='0.0.0.0', port=8080)
