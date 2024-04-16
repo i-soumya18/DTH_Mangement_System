@@ -8,5 +8,12 @@
       <jdbc-url>jdbc:mysql://localhost:3306/dth_data</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
+    <data-source source="LOCAL" name="dthy_data@dpg-codd9tol5elc73flt3ng-a" uuid="487f2463-e3b1-4e21-9849-2429663a210c">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://dpg-codd9tol5elc73flt3ng-a:5432/dthy_data</jdbc-url>
+      <working-dir>$ProjectFileDir$</working-dir>
+    </data-source>
   </component>
 </project>
