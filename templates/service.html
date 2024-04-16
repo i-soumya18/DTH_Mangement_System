@@ -57,7 +57,7 @@
                         <div class="col-md-12">
                             <div class="text-white p-4 p-md-5">
                                 <h2 class="fw-bold text-white mb-3">{{ channel['channel_name'] }}</h2>
-                                <p class="mb-4">Channel ID: {{ channel['channel_id'] }}</p>
+                                <p class="mb-4">Channel Name: {{ channel['channel_name'] }}</p>
                                 <p class="mb-4">Price: ${{ channel['channel_price'] }}</p>
                                 <a href="{{ channel['channel_url'] }}" class="btn btn-light btn-lg" target="_blank">View Channel</a>
                                 <form action="/add_channel" method="POST">
@@ -65,10 +65,6 @@
                                     <button class="btn btn-light btn-lg" type="submit">Add to Cart</button>
                                 </form>
                             </div>
-                        </div>
-                        <div class="col-md-12" style="min-height: 250px;">
-                            <!-- Add an iframe to display the channel thumbnail -->
-                            <iframe width="100%" height="100%" src="{{ channel['channel_url'] }}" frameborder="0" allowfullscreen></iframe>
                         </div>
                     </div>
                 </div>
@@ -83,7 +79,7 @@
         {% endif %}
     </div>
 </section>
-        <div><a class="btn btn-outline-primary" role="button" href="#">← Back</a><a class="btn btn-outline-primary float-end" role="button" href="#">Next →</a></div>
+
         <footer>
             <div class="row">
                 <div class="col-sm-6 col-md-4 footer-navigation">
