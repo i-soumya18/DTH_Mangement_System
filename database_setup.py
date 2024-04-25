@@ -10,15 +10,6 @@ def connect_to_database():
     )
 
 
-# design the dth_data.cart table
-def create_cart_table():
-    connection = connect_to_database()
-    cursor = connection.cursor()
-    query = "CREATE TABLE IF NOT EXISTS cart (email VARCHAR(255), channel_id VARCHAR(255), channel_title VARCHAR(255))"
-    cursor.execute(query)
-    connection.commit()
-    cursor.close()
-    connection.close()
 
 
 # Function to check if the provided email and password match any stored credentials in the database
@@ -114,15 +105,24 @@ def get_all_users():
     connection.close()
     return users
 
-# Function to add channel to the cart
-def add_channel(email, channel_data):
+# Function to add channel to the cart from channel table respective to the user
+def add_channel(email, channel_id):
     connection = connect_to_database()
     cursor = connection.cursor()
-    query = "INSERT INTO cart (email, channel_id, channel_title) VALUES (%s, %s, %s)"
-    cursor.execute(query, (email, channel_data['id'], channel_data['title']))
-    connection.commit()
-    cursor.close()
-    connection.close()
+    query = "SELECT * FROM channels WHERE channel_id = %s"
+    cursor.execute(query, (channel_id,))
+    channel_data = cursor.fetchone()
+    if channel_data:
+        query = "INSERT INTO cart (email, channel_id, channel_title, channel_price) VALUES (%s, %s, %s, %s)"
+        cursor.execute(query, (email, channel_data[0], channel_data[1], channel_data[2]))
+        connection.commit()
+        cursor.close()
+        connection.close()
+        return True
+    else:
+        return False
+
+
 
 
 # Function to get cart data for the user
@@ -203,20 +203,37 @@ def add_channel_to_db(channel_data):
         print("Error adding channel to database:", error)
 
 
-# Call this function to create your channels table if it does not exist
-def create_channels_table():
-    connection = connect_to_database()
-    cursor = connection.cursor()
-    query = "CREATE TABLE IF NOT EXISTS channels (channel_id VARCHAR(255) PRIMARY KEY, channel_name VARCHAR(255), channel_price FLOAT)"
-    cursor.execute(query)
-    connection.commit()
-    cursor.close()
-    connection.close()
-
 def get_all_channels(cursor):
     query = "SELECT * FROM channels"
     cursor.execute(query)
     channels = cursor.fetchall()
     return channels
 
+# write a function to add user selected channel from cart to another new table purchased_channels
+def add_channel_to_purchased_channels(email, channel_id):
+    connection = connect_to_database()
+    cursor = connection.cursor()
+    query = "SELECT * FROM cart WHERE email = %s AND channel_id = %s"
+    cursor.execute(query, (email, channel_id))
+    channel_data = cursor.fetchone()
+    if channel_data:
+        query = "INSERT INTO purchased_channels (email, channel_id, channel_title) VALUES (%s, %s, %s)"
+        cursor.execute(query, (email, channel_data[1], channel_data[2]))
+        connection.commit()
+        cursor.close()
+        connection.close()
+        return True
+    else:
+        return False
+
+# Function to get all the purchased channels for a user
+def get_purchased_channels(email):
+    connection = connect_to_database()
+    cursor = connection.cursor()
+    query = "SELECT * FROM purchased_channels WHERE email = %s"
+    cursor.execute(query, (email,))
+    purchased_channels = cursor.fetchall()
+    cursor.close()
+    connection.close()
+    return purchased_channels
 

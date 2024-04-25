@@ -1,0 +1,47 @@
+USER TABLE
+
+  CREATE TABLE IF NOT EXISTS users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255),
+    email VARCHAR(255) UNIQUE,
+    password VARCHAR(255),
+    phone_number VARCHAR(20),
+    street VARCHAR(255),
+    state VARCHAR(100),
+    city VARCHAR(100),
+    zip_code VARCHAR(20)
+);
+
+
+CART TABLE
+
+   CREATE TABLE IF NOT EXISTS cart (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255),
+    channel_id VARCHAR(255),
+    channel_title VARCHAR(255),
+    FOREIGN KEY (email) REFERENCES users(email)
+);
+
+
+
+Purchased Channels Table:
+
+   CREATE TABLE IF NOT EXISTS purchased_channels (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255),
+    channel_id VARCHAR(255),
+    channel_title VARCHAR(255),
+    channel_price FLOAT,
+    FOREIGN KEY (email) REFERENCES users(email)
+);
+
+
+CREATE TABLE channels (
+    channel_id INT PRIMARY KEY,
+    channel_name VARCHAR(255) NOT NULL,
+    channel_price DECIMAL(10, 2),
+    channel_url VARCHAR(255)
+);
+
+    

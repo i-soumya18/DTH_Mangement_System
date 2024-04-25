@@ -50,21 +50,21 @@
     <div class="container">
         {% if channels %}
         <div class="row">
-            {% for channel in channels %}
+            {% for channels in channels %}
             <div class="col-md-4 mb-4">
                 <div class="bg-dark border rounded border-0 border-dark overflow-hidden">
                     <div class="row g-0">
                         <div class="col-md-12">
                             <div class="text-white p-4 p-md-5">
-                                <h2 class="fw-bold text-white mb-3">{{ channel['channel_name'] }}</h2>
-                                <p class="mb-4">Channel Name: {{ channel['channel_name'] }}</p>
-                                <p class="mb-4">Price: ${{ channel['channel_price'] }}</p>
-                                <a href="{{ channel['channel_url'] }}" class="btn btn-light btn-lg" target="_blank">View Channel</a>
-                                <form action="/add_to_cart" method="POST">
-                                    <input type="hidden" name="channel_id" value="{{ channel['channel_id'] }}">
-                                    <input type="hidden" name="channel_name" value="{{ channel['channel_name'] }}">
-                                    <input type="hidden" name="channel_price" value="{{ channel['channel_price'] }}">
-                                    <input type="hidden" name="channel_url" value="{{ channel['channel_url'] }}">
+                                <h2 class="fw-bold text-white mb-3">{{ channels['channel_name'] }}</h2>
+                                <p class="mb-4">Channel Name: {{ channels['channel_name'] }}</p>
+                                <p class="mb-4">Price: ${{ channels['channel_price'] }}</p>
+                                <a href="{{ channels['channel_url'] }}" class="btn btn-light btn-lg" target="_blank">View Channel</a>
+                                <form action="/add_channel" method="POST">
+                                    <input type="hidden" name="channel_id" value="{{ channels['channel_id'] }}">
+                                    <input type="hidden" name="channel_name" value="{{ channels['channel_name'] }}">
+                                    <input type="hidden" name="channel_price" value="{{ channels['channel_price'] }}">
+                                    <input type="hidden" name="channel_url" value="{{ channels['channel_url'] }}">
                                     <button class="btn btn-light btn-lg" type="submit">Add to Cart</button>
                                 </form>
                             </div>

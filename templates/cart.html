@@ -57,6 +57,7 @@
                     <th class="bg-light border-0" scope="col"><span style="color: rgb(17, 9, 9);">PRODUCT</span></th>
                     <th class="bg-light border-0" scope="col"><span style="color: rgb(7, 6, 6);">PRICE</span></th>
                     <th class="bg-light border-0" scope="col"><span style="color: rgb(8, 7, 7);">REMOVE</span></th>
+                    <th class="bg-light border-0" scope="col"><span style="color: rgb(8, 7, 7);">PURCHASE</span></th> <!-- Added Purchase column header -->
                 </tr>
             </thead>
             <tbody>
@@ -67,7 +68,7 @@
                                 <div class="p-2">
                                     <img src="{{ item.channel_image }}" alt="" width="70" class="img-fluid rounded shadow-sm">
                                     <div class="ml-3 d-inline-block align-middle">
-                                        <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">{{ item.channel_title }}</a></h5><span class="text-muted font-weight-normal font-italic d-block">Category: YouTube Channel</span>
+                                        <h5 class="mb-0"> <a href="#" class="text-dark d-inline-block align-middle">{{ item.channel_title }}</a></h5><span class="text-muted font-weight-normal font-italic d-block"></span>
                                     </div>
                                 </div>
                             </td>
@@ -75,14 +76,20 @@
                             <td class="border-0 align-middle">
                                 <form action="{{ url_for('delete_channel_from_cart') }}" method="POST">
                                     <input type="hidden" name="channel_id" value="{{ item.channel_id }}">
-                                    <button type="submit" class="btn btn-link text-dark" onclick="return confirm('Are you sure you want to remove this channel from the cart?')"><i class="fa fa-trash"></i> Remove</button>
+                                    <button type="submit" class="btn btn-primary" onclick="return confirm('Are you sure you want to remove this channel from the cart?')"><i class="fa fa-trash"></i> Remove</button>
+                                </form>
+                            </td>
+                            <td class="border-0 align-middle">
+                                <form action="{{ url_for('purchase_channel') }}" method="POST">
+                                    <input type="hidden" name="channel_id" value="{{ item.channel_id }}">
+                                    <button type="submit" class="btn btn-primary"><i class="fa fa-shopping-cart"></i> Purchase</button>
                                 </form>
                             </td>
                         </tr>
                     {% endfor %}
                 {% else %}
                     <tr>
-                        <td colspan="3" class="text-center">Your cart is empty.</td>
+                        <td colspan="4" class="text-center">Your cart is empty.</td> <!-- Colspan updated to accommodate the new column -->
                     </tr>
                 {% endif %}
             </tbody>
@@ -90,6 +97,7 @@
     </div>
     <a href="{{ url_for('service') }}" class="btn btn-primary">Continue Shopping</a>
 </div>
+
 
 
           <!-- End -->

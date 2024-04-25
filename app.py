@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, redirect, url_for, flash, session
-from database_setup import check_credentials, signup_data, get_profile_data, update_user_data, add_channel, get_cart_data, delete_channel, clear_cart, store_purchased_channels, get_purchased_channels
+from database_setup import check_credentials, signup_data, get_profile_data, update_user_data,add_channel, get_cart_data, delete_channel, clear_cart, store_purchased_channels, get_purchased_channels
 from service import get_channel_data
 from database_setup import add_channel_to_db, connect_to_database, get_all_channels
 
@@ -113,7 +113,7 @@ def search_channel():
         return redirect(url_for('service'))
 
 
-@app.route('/add_channel', methods=['POST'])
+'''@app.route('/add_channel', methods=['POST'])
 def add_channel_to_cart():
     email = session.get('email')
     if email:
@@ -126,7 +126,7 @@ def add_channel_to_cart():
             flash('Failed to add channel to cart. Channel data not found.', 'error')
     else:
         flash('User not logged in!', 'error')
-    return redirect(url_for('service'))
+    return redirect(url_for('service'))'''
 
 
 @app.route('/delete_channel', methods=['POST'])
@@ -175,7 +175,7 @@ def cart():
 
 from flask import session
 
-@app.route('/add_to_cart', methods=['POST'])
+@app.route('/add_channel', methods=['POST'])
 def add_to_cart():
     # Check if the user is logged in
     email = session.get('email')
@@ -189,6 +189,7 @@ def add_to_cart():
         channel_title = request.form['channel_name']
         channel_price = request.form['channel_price']
         email = session.get('email')
+        print(channel_id, channel_title, channel_price, email)
         #channel_url = request.form['channel_url']
 
         # Add channel to cart table
@@ -201,11 +202,111 @@ def add_to_cart():
             cursor.close()
             connection.close()
             flash('Channel added to cart successfully!', 'success')
-            return redirect(url_for('show_channels'))  # Redirect to the page where channels are displayed
+            return redirect(url_for('service'))  # Redirect to the page where channels are displayed
         except Exception as e:
             print("Error adding channel to cart:", e)
             flash('An error occurred while adding the channel to the cart.', 'error')
             return redirect(url_for('service'))  # Redirect to the page where channels are displayed
+
+# write a function to add user selected channel to purchased_channels table when user clicks on purchase button in cart.html and simultaneously delete the particular channel from cart table and display a message "Channel purchased successfully" in cart.html page after the channel is purchased successfully.
+@app.route('/purchase_channel', methods=['POST'])
+def purchase_channel():
+    # Check if the user is logged in
+    email = session.get('email')
+    if not email:
+        flash('User not logged in!', 'error')
+        return redirect(url_for('login'))
+
+    if request.method == 'POST':
+        # Extract form data
+        channel_id = request.form['channel_id']
+        channel_title = request.form['channel_name']
+        channel_price = request.form['channel_price']
+        email = session.get('email')
+
+        # Add channel to purchased_channels table
+        try:
+            connection = connect_to_database()
+            cursor = connection.cursor()
+            query = "INSERT INTO purchased_channels (email, channel_id, channel_title, channel_price) VALUES (%s, %s, %s, %s)"
+            cursor.execute(query, (email, channel_id, channel_title, channel_price))
+            connection.commit()
+            cursor.close()
+            connection.close()
+
+            # Delete the channel from the cart table
+            connection = connect_to_database()
+            cursor = connection.cursor()
+            query = "DELETE FROM cart WHERE email = %s AND channel_id = %s"
+            cursor.execute(query, (email, channel_id))
+            connection.commit()
+            cursor.close()
+            connection.close()
+
+            flash('Channel purchased successfully!', 'success')
+            return redirect(url_for('cart'))
+        except Exception as e:
+            print("Error purchasing channel:", e)
+            flash('An error occurred while purchasing the channel.', 'error')
+            return redirect(url_for('cart'))
+
+@app.route('/delete_channel', methods=['POST'])
+def delete_channel():
+    # Check if the user is logged in
+    email = session.get('email')
+    if not email:
+        flash('User not logged in!', 'error')
+        return redirect(url_for('login'))
+
+    if request.method == 'POST':
+        # Extract form data
+        channel_id = request.form['channel_id']
+
+        # Delete the channel from the cart table
+        try:
+            connection = connect_to_database()
+            cursor = connection.cursor()
+            query = "DELETE FROM cart WHERE email = %s AND channel_id = %s"
+            cursor.execute(query, (email, channel_id))
+            connection.commit()
+            cursor.close()
+            connection.close()
+            flash('Channel deleted from cart successfully!', 'success')
+            return redirect(url_for('cart'))
+        except Exception as e:
+            print("Error deleting channel from cart:", e)
+            flash('An error occurred while deleting the channel from the cart.', 'error')
+            return redirect(url_for('cart'))
+
+@app.route('/clear_cart', methods=['POST'])
+def clear_cart():
+    # Check if the user is logged in
+    email = session.get('email')
+    if not email:
+        flash('User not logged in!', 'error')
+        return redirect(url_for('login'))
+
+    if request.method == 'POST':
+        # Clear the cart for the user
+        try:
+            connection = connect_to_database()
+            cursor = connection.cursor()
+            query = "DELETE FROM cart WHERE email = %s"
+            cursor.execute(query, (email,))
+            connection.commit()
+            cursor.close()
+            connection.close()
+            flash('Cart cleared successfully!', 'success')
+            return redirect(url_for('cart'))
+        except Exception as e:
+            print("Error clearing cart:", e)
+            flash('An error occurred while clearing the cart.', 'error')
+            return redirect(url_for('cart'))
+
+
+
+
+
 
 if __name__ == "__main__":
     app.secret_key = 'abcdefghijklmnopqrswxyz'
