@@ -1,0 +1,16 @@
+1.User Authentication: Users can sign up and log in to the system using their email and password. This allows for personalized user experiences and secure access to their data.
+
+
+2.Browsing Channels: Users can browse through a list of available channels. Each channel is displayed with its name, price, and an option to add it to the cart.
+
+
+3.Adding Channels to Cart: Users can add channels they want to subscribe to their cart. This functionality allows users to select the channels they are interested in before making a purchase.
+
+
+4.Cart Management: Users can view the channels they have added to their cart. They can also remove channels from the cart if they change their mind. Once satisfied with their selection, users can proceed to purchase the channels in their cart.
+
+5.Purchase Channels: Users can purchase the channels in their cart. After confirming the purchase, the selected channels are stored as purchased channels in the database. The cart is then cleared, ready for the user to add more channels or proceed with other actions.
+
+6.User Profile Management: Users can manage their profile information such as name, email, address, and phone number. This ensures that their account details are up to date and accurate.
+
+7.Database Management: The system interacts with a MySQL database to store and retrieve user information, channel data, cart contents, and purchased channels. This ensures that data is persisted between sessions and accessible across different parts of the application.

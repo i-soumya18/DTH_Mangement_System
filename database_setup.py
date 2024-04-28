@@ -237,3 +237,20 @@ def get_purchased_channels(email):
     connection.close()
     return purchased_channels
 
+
+'''def get_purchased_channels(email):
+    connection = connect_to_database()
+    cursor = connection.cursor()
+    query = "SELECT channel_id, channel_title, channel_price FROM purchased_channels WHERE email = %s"
+    cursor.execute(query, (email,))
+    purchased_channels = cursor.fetchall()
+    cursor.close()
+    connection.close()
+
+    # Store retrieved data in variables
+    channel_ids = [row[0] for row in purchased_channels]
+    channel_titles = [row[1] for row in purchased_channels]
+    channel_prices = [row[2] for row in purchased_channels]
+    print(channel_ids, channel_titles, channel_prices)
+
+    #return channel_ids, channel_titles, channel_prices'''
