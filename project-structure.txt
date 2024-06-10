@@ -1,0 +1,20 @@
+DTH_Mangement_System/
+│
+├── app.py                  # Main application file
+├── requirements.txt        # Python dependencies
+├── .env                    # Environment variables
+├── database/
+│   ├── schema.sql          # Database schema
+│   └── data.sql            # Sample data
+├── static/
+│   ├── bootstrap/          # Bootstrap CSS and JS files
+│   ├── css/                # Custom CSS files
+│   └── js/                 # Custom JS files
+└── templates/
+    ├── base.html           # Base template
+    ├── index.html          # Home page
+    ├── login.html          # Login page
+    ├── register.html       # Registration page
+    ├── service.html        # Service page for channel search
+    ├── cart.html           # Cart page
+    └── purchase.html       # Purchase confirmation page
