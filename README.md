@@ -4,6 +4,9 @@
 
 The DTH Management System is a web application designed to streamline the management of Direct-to-Home (DTH) television channel subscriptions. This system allows users to search for YouTube channels, add them to a cart, and proceed with purchasing, providing an efficient way to manage digital entertainment needs.
 
+![Home Page](/dth-management.png)
+*Home Page of DTH Management System*
+
 ## Features
 
 - **User Authentication**: Secure user registration and login.
